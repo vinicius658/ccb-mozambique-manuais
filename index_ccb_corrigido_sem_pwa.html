@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manuais Ministeriais da Congregação Cristã no Brasil para Moçambique">
+    <meta name="keywords" content="CCB, Congregação Cristã, Moçambique, Manuais Ministeriais">
+    <meta name="author" content="CCB Moçambique">
+    <title>Manuais Ministeriais - CCB Moçambique</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #4a5568;
+        }
+
+        .nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            background: #667eea;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Sections */
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            text-align: center;
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 4px solid #667eea;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta-item {
+            background: #f7fafc;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #4a5568;
+        }
+
+        .card-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .card-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .card-button:hover {
+            background: #5a67d8;
+            transform: translateY(-1px);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 800px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: #f7fafc;
+            color: #333;
+        }
+
+        .modal-body {
+            line-height: 1.8;
+            color: #4a5568;
+        }
+
+        .step {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-title {
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .bible-verse {
+            background: #e6fffa;
+            border-left: 4px solid #38b2ac;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #2c7a7b;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin-right: 0.5rem;
+        }
+
+        .breadcrumb a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            .nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .main-content {
+                margin-top: 140px;
+                padding: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                margin: 1rem;
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                margin-top: 160px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span>📚</span>
+                <div>
+                    <div>Manuais Ministeriais</div>
+                    <small style="color: #666; font-weight: normal;">CCB Moçambique</small>
+                </div>
+            </div>
+            <nav class="nav">
+                <a href="#" class="nav-btn active" onclick="showSection('inicio')">Início</a>
+                <a href="#" class="nav-btn" onclick="showSection('doutrina')">Doutrina</a>
+                <a href="#" class="nav-btn" onclick="showSection('guias')">Guias Práticos</a>
+                <a href="#" class="nav-btn" onclick="showSection('manuais')">Manuais</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Início Section -->
+        <section id="inicio" class="section active">
+            <div class="hero">
+                <h1>Formação Ministerial para Moçambique</h1>
+                <p>Caros irmãos, A paz de Deus seja convosco. Manuais completos para formação e orientação de obreiros da Congregação Cristã no Brasil, especialmente adaptados para o contexto missionário de Moçambique, conforme a sã doutrina da Palavra de Deus.</p>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">15</div>
+                    <div>Manuais Completos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <div>Guias Práticos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div>Base Bíblica</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">Responsivo</div>
+                    <div>Funciona em Qualquer Dispositivo</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Doutrina Section -->
+        <section id="doutrina" class="section">
+            <div class="breadcrumb">
+                <a href="#" onclick="showSection('inicio')">Início</a> > Doutrina
+            </div>
+            
+            <h2 class="section-title">Fundamentos Doutrinários</h2>
+            <p class="section-subtitle">Base bíblica sólida conforme a sã doutrina da Palavra de Deus</p>
+
+            <div class="cards-grid">
+                <div class="card" onclick="openModal('12pontos')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">12 Pontos de Doutrina</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">12 pontos</span>
+                                <span class="meta-item">Base bíblica</span>
+                                <span class="meta-item">Fundamental</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Fundamentos Bíblicos da fé cristã conforme ensinados pela Congregação Cristã no Brasil, baseados inteiramente na Escritura Sagrada.</p>
+                    <button class="card-button">Estudar Doutrina</button>
+                </div>
+
+                <div class="card" onclick="openModal('estrutura-culto')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Estrutura do Culto</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">11 passos</span>
+                                <span class="meta-item">1h:30m</span>
+                                <span class="meta-item">Ancião</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Ordem e reverência nos cultos conforme a tradição apostólica, seguindo a sequência estabelecida pela bendita obra de Deus.</p>
+                    <button class="card-button">Ver Estrutura</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guias Práticos Section -->
+        <section id="guias" class="section">
+            <div class="breadcrumb">
+                <a href="#" onclick="showSection('inicio')">Início</a> > Guias Práticos
+            </div>
+            
+            <h2 class="section-title">Guias Práticos</h2>
+            <p class="section-subtitle">Procedimentos passo a passo para atividades ministeriais conforme a sã doutrina</p>
+
+            <div class="cards-grid">
+                <div class="card" onclick="openModal('guia-culto')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Como Atender Culto</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">11 passos</span>
+                                <span class="meta-item">1h:30m</span>
+                                <span class="meta-item">Ancião/Cooperador</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Roteiro completo para conduzir cultos com ordem e reverência, desde a abertura até o encerramento, seguindo a sequência tradicional da CCB.</p>
+                    <button class="card-button">Iniciar Guia</button>
+                </div>
+
+                <div class="card" onclick="openModal('guia-batismo')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Como Atender Batismo</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">12 passos</span>
+                                <span class="meta-item">1h:30m</span>
+                                <span class="meta-item">Ancião</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Procedimentos completos para o sacramento do batismo, incluindo preparação espiritual, verificações necessárias e a cerimônia propriamente dita.</p>
+                    <button class="card-button">Iniciar Guia</button>
+                </div>
+
+                <div class="card" onclick="openModal('guia-santa-ceia')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Como Atender Santa Ceia</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">10 passos</span>
+                                <span class="meta-item">1h:30m</span>
+                                <span class="meta-item">Ancião</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Orientações para a celebração da Santa Ceia, incluindo preparação dos elementos, ordem hierárquica e procedimentos específicos da CCB.</p>
+                    <button class="card-button">Iniciar Guia</button>
+                </div>
+
+                <div class="card" onclick="openModal('guia-uncao')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Como Atender Unção</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">8 passos</span>
+                                <span class="meta-item">1h:30m</span>
+                                <span class="meta-item">Ancião/Cooperador</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Procedimentos para a unção dos enfermos, incluindo preparação espiritual, oração e aplicação do óleo sagrado conforme a doutrina bíblica.</p>
+                    <button class="card-button">Iniciar Guia</button>
+                </div>
+
+                <div class="card" onclick="openModal('guia-jovens')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Como Conduzir Reunião de Jovens</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">12 passos</span>
+                                <span class="meta-item">1h:30m</span>
+                                <span class="meta-item">CJM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Estrutura para reuniões de jovens e menores, incluindo atividades educativas, momentos de oração e ensino adaptado para cada faixa etária.</p>
+                    <button class="card-button">Iniciar Guia</button>
+                </div>
+
+                <div class="card" onclick="openModal('guia-ensaio')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Como Organizar Ensaio Musical</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">10 passos</span>
+                                <span class="meta-item">1h:30m</span>
+                                <span class="meta-item">Encarregado</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Organização de ensaios musicais, incluindo preparação de hinos, coordenação de instrumentos e orientação para músicos e organistas.</p>
+                    <button class="card-button">Iniciar Guia</button>
+                </div>
+
+                <div class="card" onclick="openModal('guia-visitantes')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Como Receber Visitantes</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">8 passos</span>
+                                <span class="meta-item">1h:30m</span>
+                                <span class="meta-item">Porteiro</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Procedimentos para recepção de visitantes, incluindo orientações sobre a casa de oração, apresentação da doutrina e acompanhamento inicial.</p>
+                    <button class="card-button">Iniciar Guia</button>
+                </div>
+
+                <div class="card" onclick="openModal('guia-piedade')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Como Conduzir Obra da Piedade</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">14 passos</span>
+                                <span class="meta-item">1h:30m</span>
+                                <span class="meta-item">Diácono</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Orientações para a obra da piedade, incluindo visitação aos necessitados, distribuição de auxílios e acompanhamento espiritual.</p>
+                    <button class="card-button">Iniciar Guia</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Manuais Section -->
+        <section id="manuais" class="section">
+            <div class="breadcrumb">
+                <a href="#" onclick="showSection('inicio')">Início</a> > Manuais
+            </div>
+            
+            <h2 class="section-title">Manuais por Ministério</h2>
+            <p class="section-subtitle">Orientações específicas para cada cargo ministerial conforme a estrutura organizacional da CCB</p>
+
+            <div class="cards-grid">
+                <div class="card" onclick="openModal('manual-anciao')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Ancião</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">Ordenado</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Responsabilidades de batismo, Santa Ceia, unção dos enfermos e exortação da palavra conforme a autoridade ministerial outorgada pelo presbitério.</p>
+                    <button class="card-button">Ver Manual</button>
+                </div>
+
+                <div class="card" onclick="openModal('manual-cooperador')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Cooperador do Ofício Ministerial</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">Apresentado</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Atendimento geral da casa de oração, auxílio ao presbitério e cooperação nas atividades ministeriais conforme orientação dos anciães.</p>
+                    <button class="card-button">Ver Manual</button>
+                </div>
+
+                <div class="card" onclick="openModal('manual-diacono')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Diácono</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">Ordenado</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Obra da Piedade, assistência aos necessitados e administração dos recursos destinados ao auxílio fraternal conforme a doutrina apostólica.</p>
+                    <button class="card-button">Ver Manual</button>
+                </div>
+
+                <div class="card" onclick="openModal('manual-cjm')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Cooperador de Jovens e Menores</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">Apresentado</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Responsável pelo ensino e orientação da mocidade conforme os santos princípios da Palavra de Deus, conduzindo reuniões específicas.</p>
+                    <button class="card-button">Ver Manual</button>
+                </div>
+
+                <div class="card" onclick="openModal('manual-porteiro')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Porteiro</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">Apresentado</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Recepção de visitantes, manutenção da ordem na casa de oração e auxílio nas atividades gerais da comum congregação.</p>
+                    <button class="card-button">Ver Manual</button>
+                </div>
+
+                <div class="card" onclick="openModal('manual-auxiliar')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Auxiliar de Ordem</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">Apresentado</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Assistência na manutenção da ordem durante os cultos, auxílio aos porteiros e cooperação nas atividades da casa de oração.</p>
+                    <button class="card-button">Ver Manual</button>
+                </div>
+
+                <div class="card" onclick="openModal('manual-encarregado-regional')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Encarregado Regional de Música</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">Musical</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Coordenação regional das atividades musicais, orientação aos encarregados locais e supervisão dos ensaios conforme os métodos oficiais.</p>
+                    <button class="card-button">Ver Manual</button>
+                </div>
+
+                <div class="card" onclick="openModal('manual-encarregado-orquestra')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Encarregado de Orquestra</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">Musical</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Regência da orquestra local, coordenação dos instrumentistas e organização dos ensaios conforme as instruções regulamentares.</p>
+                    <button class="card-button">Ver Manual</button>
+                </div>
+
+                <div class="card" onclick="openModal('manual-instrutor')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Instrutor de Música</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">Musical</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Ensino musical aos irmãos, instrução nos métodos oficiais e formação de novos músicos conforme os padrões estabelecidos.</p>
+                    <button class="card-button">Ver Manual</button>
+                </div>
+
+                <div class="card" onclick="openModal('manual-musico')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Músico Oficializado</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">Musical</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Participação na orquestra oficial, execução dos hinos conforme os arranjos estabelecidos e cooperação nos ensaios regulares.</p>
+                    <button class="card-button">Ver Manual</button>
+                </div>
+
+                <div class="card" onclick="openModal('manual-organista')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Organista Examinadora</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">Musical</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Execução do órgão nos cultos, acompanhamento dos hinos e exame de novas organistas conforme os métodos de estudo oficiais.</p>
+                    <button class="card-button">Ver Manual</button>
+                </div>
+
+                <div class="card" onclick="openModal('manual-missionario')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Missionário</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">Missões</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Evangelização em campos missionários, estabelecimento de novas congregações e formação de obreiros locais conforme a Grande Comissão.</p>
+                    <button class="card-button">Ver Manual</button>
+                </div>
+
+                <div class="card" onclick="openModal('manual-administracao')">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Administração</h3>
+                            <div class="card-meta">
+                                <span class="meta-item">Administrativo</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-description">Gestão administrativa da casa de oração, controle financeiro e organização dos recursos materiais conforme os princípios de probidade.</p>
+                    <button class="card-button">Ver Manual</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title" class="modal-title"></h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="modal-body" class="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Show target section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update nav buttons
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Modal functions
+        function openModal(contentId) {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            
+            const content = getModalContent(contentId);
+            modalTitle.textContent = content.title;
+            modalBody.innerHTML = content.body;
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Modal content
+        function getModalContent(contentId) {
+            const contents = {
+                '12pontos': {
+                    title: '12 Pontos de Doutrina',
+                    body: `
+                        <p><strong>Caros irmãos, A paz de Deus seja convosco.</strong></p>
+                        <p>Os 12 Pontos de Doutrina da Congregação Cristã no Brasil, fundamentados inteiramente na Escritura Sagrada:</p>
+                        
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-title">Nós cremos na inteira Bíblia</div>
+                            <div class="step-description">A Bíblia Sagrada é a Palavra de Deus, inspirada pelo Espírito Santo.</div>
+                            <div class="bible-verse">"Toda Escritura é inspirada por Deus e útil para o ensino, para a repreensão, para a correção, para a educação na justiça" (2 Timóteo 3:16)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-title">Nós cremos na Trindade</div>
+                            <div class="step-description">Pai, Filho e Espírito Santo - três pessoas distintas, mas um só Deus.</div>
+                            <div class="bible-verse">"Portanto ide, fazei discípulos de todas as nações, batizando-os em nome do Pai, e do Filho, e do Espírito Santo" (Mateus 28:19)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-title">Nós cremos na concepção virginal</div>
+                            <div class="step-description">Jesus Cristo foi concebido pelo Espírito Santo no ventre da virgem Maria.</div>
+                            <div class="bible-verse">"Eis que a virgem conceberá e dará à luz um filho, e será o seu nome Emanuel" (Mateus 1:23)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-title">Nós cremos no pecado original</div>
+                            <div class="step-description">Todos os homens são pecadores por natureza, herdeiros do pecado de Adão.</div>
+                            <div class="bible-verse">"Portanto, assim como por um só homem entrou o pecado no mundo, e pelo pecado a morte, assim também a morte passou a todos os homens, porque todos pecaram" (Romanos 5:12)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-title">Nós cremos na justificação pela fé</div>
+                            <div class="step-description">A salvação é pela graça, mediante a fé em Jesus Cristo, não por obras.</div>
+                            <div class="bible-verse">"Porque pela graça sois salvos, mediante a fé; e isto não vem de vós, é dom de Deus; não de obras, para que ninguém se glorie" (Efésios 2:8-9)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <div class="step-title">Nós cremos no novo nascimento</div>
+                            <div class="step-description">É necessário nascer de novo pelo Espírito Santo para entrar no Reino de Deus.</div>
+                            <div class="bible-verse">"Em verdade, em verdade te digo que se alguém não nascer de novo, não pode ver o reino de Deus" (João 3:3)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">7</div>
+                            <div class="step-title">Nós cremos no batismo por imersão</div>
+                            <div class="step-description">O batismo deve ser por imersão, em nome do Pai, do Filho e do Espírito Santo.</div>
+                            <div class="bible-verse">"E desceram ambos à água, Filipe e o eunuco, e Filipe o batizou" (Atos 8:38)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">8</div>
+                            <div class="step-title">Nós cremos na necessidade da santificação</div>
+                            <div class="step-description">O cristão deve buscar a santificação, vivendo em conformidade com a vontade de Deus.</div>
+                            <div class="bible-verse">"Segui a paz com todos, e a santificação, sem a qual ninguém verá o Senhor" (Hebreus 12:14)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">9</div>
+                            <div class="step-title">Nós cremos no dom de línguas</div>
+                            <div class="step-description">O Espírito Santo concede dons espirituais, incluindo o dom de línguas.</div>
+                            <div class="bible-verse">"E todos ficaram cheios do Espírito Santo, e começaram a falar noutras línguas, conforme o Espírito lhes concedia que falassem" (Atos 2:4)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">10</div>
+                            <div class="step-title">Nós cremos na segunda vinda de Cristo</div>
+                            <div class="step-description">Jesus Cristo voltará visivelmente para buscar a sua Igreja.</div>
+                            <div class="bible-verse">"Eis que vem com as nuvens, e todo olho o verá, até mesmo aqueles que o traspassaram" (Apocalipse 1:7)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">11</div>
+                            <div class="step-title">Nós cremos no juízo final</div>
+                            <div class="step-description">Haverá um juízo final onde todos serão julgados segundo as suas obras.</div>
+                            <div class="bible-verse">"E vi os mortos, grandes e pequenos, em pé diante do trono; e abriram-se uns livros" (Apocalipse 20:12)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">12</div>
+                            <div class="step-title">Nós cremos na vida eterna</div>
+                            <div class="step-description">Os salvos terão vida eterna com Deus, e os ímpios, condenação eterna.</div>
+                            <div class="bible-verse">"E irão estes para o castigo eterno, mas os justos para a vida eterna" (Mateus 25:46)</div>
+                        </div>
+
+                        <p><strong>Vossos irmãos em Cristo</strong></p>
+                    `
+                },
+                'estrutura-culto': {
+                    title: 'Estrutura do Culto',
+                    body: `
+                        <p><strong>Caros irmãos, A paz de Deus seja convosco.</strong></p>
+                        <p>Ordem e reverência nos cultos conforme a tradição apostólica da Congregação Cristã no Brasil:</p>
+                        
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-title">Abertura</div>
+                            <div class="step-description">Iniciar o culto com saudação solene aos irmãos, invocando a paz de Deus sobre a congregação conforme se lê nas Escrituras Sagradas.</div>
+                            <div class="bible-verse">"A paz seja convosco" (João 20:19)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-title">Primeiro Hino</div>
+                            <div class="step-description">Entoar o primeiro hino conforme orientação do Espírito Santo, elevando os corações em adoração ao Altíssimo.</div>
+                            <div class="bible-verse">"Falando entre vós com salmos, entoai e louvai de coração ao Senhor com hinos e cânticos espirituais" (Efésios 5:19)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-title">Segundo Hino</div>
+                            <div class="step-description">Continuar a adoração com o segundo hino, mantendo a reverência e solenidade apropriadas à casa de oração.</div>
+                            <div class="bible-verse">"Cantai ao Senhor um cântico novo; cantai ao Senhor, todos os moradores da terra" (Salmo 96:1)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-title">Terceiro Hino</div>
+                            <div class="step-description">Entoar o terceiro hino em preparação espiritual para o momento de oração, buscando a unidade de espírito.</div>
+                            <div class="bible-verse">"Louvai ao Senhor com harpa, cantai-lhe com saltério de dez cordas" (Salmo 33:2)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-title">Oração</div>
+                            <div class="step-description">Momento solene de oração em conjunto, onde toda a congregação se prostra diante do Senhor em súplicas e ações de graças.</div>
+                            <div class="bible-verse">"Orai sem cessar" (1 Tessalonicenses 5:17)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <div class="step-title">Quarto Hino</div>
+                            <div class="step-description">Após a oração, entoar o quarto hino como preparação para os testemunhos dos irmãos.</div>
+                            <div class="bible-verse">"É bom render graças ao Senhor, e cantar louvores ao teu nome, ó Altíssimo" (Salmo 92:1)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">7</div>
+                            <div class="step-title">Testemunhos</div>
+                            <div class="step-description">Momento para os irmãos compartilharem testemunhos das bênçãos recebidas, edificando a fé da congregação.</div>
+                            <div class="bible-verse">"Vinde, ouvi, todos vós que temeis a Deus, e vos contarei o que ele fez à minha alma" (Salmo 66:16)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">8</div>
+                            <div class="step-title">Quinto Hino</div>
+                            <div class="step-description">Entoar o quinto hino como preparação para a leitura da Palavra de Deus e exortação.</div>
+                            <div class="bible-verse">"A palavra de Cristo habite em vós ricamente, em toda a sabedoria; ensinando-vos e admoestando-vos uns aos outros, com salmos, hinos e cânticos espirituais" (Colossenses 3:16)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">9</div>
+                            <div class="step-title">Leitura da Bíblia e Exortação</div>
+                            <div class="step-description">Leitura das Escrituras Sagradas e exortação da Palavra de Deus, conforme a orientação do Espírito Santo ao ministério.</div>
+                            <div class="bible-verse">"Prega a palavra, insta a tempo e fora de tempo, repreende, corrige, exorta, com toda longanimidade e ensino" (2 Timóteo 4:2)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">10</div>
+                            <div class="step-title">Sexto Hino</div>
+                            <div class="step-description">Entoar o sexto hino como preparação para o encerramento do culto, selando a Palavra ministrada.</div>
+                            <div class="bible-verse">"Seja a minha oração dirigida como incenso diante de ti, e as minhas mãos levantadas como sacrifício da tarde" (Salmo 141:2)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">11</div>
+                            <div class="step-title">Encerramento</div>
+                            <div class="step-description">Encerrar o culto com oração final e saudação da paz, despedindo a congregação com a bênção do Senhor.</div>
+                            <div class="bible-verse">"A graça do Senhor Jesus Cristo, e o amor de Deus, e a comunhão do Espírito Santo seja com todos vós" (2 Coríntios 13:13)</div>
+                        </div>
+
+                        <p><strong>Vossos irmãos em Cristo</strong></p>
+                    `
+                },
+                'guia-culto': {
+                    title: 'Como Atender Culto',
+                    body: `
+                        <p><strong>Caros irmãos, A paz de Deus seja convosco.</strong></p>
+                        <p><strong>Progresso:</strong> 0 de 11 passos concluídos</p>
+                        
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-title">Abertura</div>
+                            <div class="step-description">Iniciar o culto com saudação solene aos irmãos, invocando a paz de Deus sobre a congregação conforme se lê nas Escrituras Sagradas.</div>
+                            <div class="bible-verse">"A paz seja convosco" (João 20:19)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-title">Primeiro Hino</div>
+                            <div class="step-description">Entoar o primeiro hino conforme orientação do Espírito Santo, elevando os corações em adoração ao Altíssimo.</div>
+                            <div class="bible-verse">"Falando entre vós com salmos, entoai e louvai de coração ao Senhor com hinos e cânticos espirituais" (Efésios 5:19)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-title">Segundo Hino</div>
+                            <div class="step-description">Continuar a adoração com o segundo hino, mantendo a reverência e solenidade apropriadas à casa de oração.</div>
+                            <div class="bible-verse">"Cantai ao Senhor um cântico novo; cantai ao Senhor, todos os moradores da terra" (Salmo 96:1)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-title">Terceiro Hino</div>
+                            <div class="step-description">Entoar o terceiro hino em preparação espiritual para o momento de oração, buscando a unidade de espírito.</div>
+                            <div class="bible-verse">"Louvai ao Senhor com harpa, cantai-lhe com saltério de dez cordas" (Salmo 33:2)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-title">Oração</div>
+                            <div class="step-description">Momento solene de oração em conjunto, onde toda a congregação se prostra diante do Senhor em súplicas e ações de graças.</div>
+                            <div class="bible-verse">"Orai sem cessar" (1 Tessalonicenses 5:17)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <div class="step-title">Quarto Hino</div>
+                            <div class="step-description">Após a oração, entoar o quarto hino como preparação para os testemunhos dos irmãos.</div>
+                            <div class="bible-verse">"É bom render graças ao Senhor, e cantar louvores ao teu nome, ó Altíssimo" (Salmo 92:1)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">7</div>
+                            <div class="step-title">Testemunhos</div>
+                            <div class="step-description">Momento para os irmãos compartilharem testemunhos das bênçãos recebidas, edificando a fé da congregação.</div>
+                            <div class="bible-verse">"Vinde, ouvi, todos vós que temeis a Deus, e vos contarei o que ele fez à minha alma" (Salmo 66:16)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">8</div>
+                            <div class="step-title">Quinto Hino</div>
+                            <div class="step-description">Entoar o quinto hino como preparação para a leitura da Palavra de Deus e exortação.</div>
+                            <div class="bible-verse">"A palavra de Cristo habite em vós ricamente, em toda a sabedoria; ensinando-vos e admoestando-vos uns aos outros, com salmos, hinos e cânticos espirituais" (Colossenses 3:16)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">9</div>
+                            <div class="step-title">Leitura da Bíblia e Exortação</div>
+                            <div class="step-description">Leitura das Escrituras Sagradas e exortação da Palavra de Deus, conforme a orientação do Espírito Santo ao ministério.</div>
+                            <div class="bible-verse">"Prega a palavra, insta a tempo e fora de tempo, repreende, corrige, exorta, com toda longanimidade e ensino" (2 Timóteo 4:2)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">10</div>
+                            <div class="step-title">Sexto Hino</div>
+                            <div class="step-description">Entoar o sexto hino como preparação para o encerramento do culto, selando a Palavra ministrada.</div>
+                            <div class="bible-verse">"Seja a minha oração dirigida como incenso diante de ti, e as minhas mãos levantadas como sacrifício da tarde" (Salmo 141:2)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">11</div>
+                            <div class="step-title">Encerramento</div>
+                            <div class="step-description">Encerrar o culto com oração final e saudação da paz, despedindo a congregação com a bênção do Senhor.</div>
+                            <div class="bible-verse">"A graça do Senhor Jesus Cristo, e o amor de Deus, e a comunhão do Espírito Santo seja com todos vós" (2 Coríntios 13:13)</div>
+                        </div>
+
+                        <p><strong>Vossos irmãos em Cristo</strong></p>
+                    `
+                },
+                'guia-batismo': {
+                    title: 'Como Atender Batismo',
+                    body: `
+                        <p><strong>Caros irmãos, A paz de Deus seja convosco.</strong></p>
+                        <p><strong>Progresso:</strong> 0 de 12 passos concluídos</p>
+                        
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-title">Preparação Espiritual</div>
+                            <div class="step-description">Buscar ao Senhor em oração, pedindo orientação e bênção para o sacramento do batismo conforme a vontade divina.</div>
+                            <div class="bible-verse">"E orava Jesus quando foi batizado" (Lucas 3:21)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-title">Verificação dos Candidatos</div>
+                            <div class="step-description">Confirmar que os candidatos foram devidamente examinados e aprovados pelo presbitério conforme os requisitos bíblicos.</div>
+                            <div class="bible-verse">"Quem crer e for batizado será salvo" (Marcos 16:16)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-title">Orientação Doutrinária</div>
+                            <div class="step-description">Ministrar orientação final sobre o significado do batismo e os deveres cristãos conforme a sã doutrina da Palavra de Deus.</div>
+                            <div class="bible-verse">"Fomos, pois, sepultados com ele pelo batismo na morte, para que, como Cristo foi ressuscitado dentre os mortos pela glória do Pai, assim andemos nós também em novidade de vida" (Romanos 6:4)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-title">Preparação do Local</div>
+                            <div class="step-description">Verificar se o batistério está devidamente preparado com água suficiente e temperatura adequada para a cerimônia.</div>
+                            <div class="bible-verse">"E desceram ambos à água, Filipe e o eunuco, e Filipe o batizou" (Atos 8:38)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-title">Abertura da Cerimônia</div>
+                            <div class="step-description">Iniciar a cerimônia com oração e hino apropriado, invocando a presença do Senhor sobre o sacramento.</div>
+                            <div class="bible-verse">"Onde estiverem dois ou três reunidos em meu nome, aí estou eu no meio deles" (Mateus 18:20)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <div class="step-title">Exortação sobre o Batismo</div>
+                            <div class="step-description">Ministrar breve exortação sobre o significado espiritual do batismo e sua importância na vida cristã.</div>
+                            <div class="bible-verse">"Não sabeis que todos quantos fomos batizados em Jesus Cristo fomos batizados na sua morte?" (Romanos 6:3)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">7</div>
+                            <div class="step-title">Chamada dos Candidatos</div>
+                            <div class="step-description">Chamar os candidatos nominalmente, confirmando sua decisão voluntária de receber o batismo.</div>
+                            <div class="bible-verse">"E disse Pedro: Arrependei-vos, e cada um de vós seja batizado em nome de Jesus Cristo" (Atos 2:38)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">8</div>
+                            <div class="step-title">Entrada no Batistério</div>
+                            <div class="step-description">Conduzir os candidatos ao batistério com reverência e solenidade, auxiliando conforme necessário.</div>
+                            <div class="bible-verse">"E logo que Jesus foi batizado, saiu da água" (Mateus 3:16)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">9</div>
+                            <div class="step-title">Fórmula do Batismo</div>
+                            <div class="step-description">Pronunciar a fórmula oficial: "Irmão/Irmã, Em Nome de Jesus Cristo te batizo; Em Nome do Pai, E do Filho, E do Espírito Santo"</div>
+                            <div class="bible-verse">"Portanto ide, fazei discípulos de todas as nações, batizando-os em nome do Pai, e do Filho, e do Espírito Santo" (Mateus 28:19)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">10</div>
+                            <div class="step-title">Imersão Completa</div>
+                            <div class="step-description">Realizar a imersão completa do candidato na água, simbolizando a morte para o pecado e ressurreição em Cristo.</div>
+                            <div class="bible-verse">"Fomos, pois, sepultados com ele pelo batismo na morte" (Romanos 6:4)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">11</div>
+                            <div class="step-title">Oração de Gratidão</div>
+                            <div class="step-description">Elevar oração de gratidão ao Senhor pelo sacramento realizado e pedir bênçãos sobre os novos irmãos.</div>
+                            <div class="bible-verse">"Em tudo dai graças, porque esta é a vontade de Deus em Cristo Jesus para convosco" (1 Tessalonicenses 5:18)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">12</div>
+                            <div class="step-title">Encerramento</div>
+                            <div class="step-description">Encerrar a cerimônia com hino de gratidão e saudação fraternal aos novos membros da comum congregação.</div>
+                            <div class="bible-verse">"Assim que, se alguém está em Cristo, nova criatura é; as coisas velhas já passaram; eis que tudo se fez novo" (2 Coríntios 5:17)</div>
+                        </div>
+
+                        <p><strong>Vossos irmãos em Cristo</strong></p>
+                    `
+                },
+                'manual-anciao': {
+                    title: 'Manual do Ancião',
+                    body: `
+                        <p><strong>Caros irmãos, A paz de Deus seja convosco.</strong></p>
+                        <p>Manual específico para o ministério do Ancião na Congregação Cristã no Brasil:</p>
+                        
+                        <h3>Qualificações Bíblicas</h3>
+                        <p>O ancião deve ser homem idôneo, revestido de dons e virtudes conforme as Escrituras Sagradas:</p>
+                        <div class="bible-verse">"Se alguém aspira ao episcopado, excelente obra deseja. É necessário, pois, que o bispo seja irrepreensível, marido de uma só mulher, temperante, sóbrio, ordeiro, hospitaleiro, apto para ensinar" (1 Timóteo 3:1-2)</div>
+                        
+                        <h3>Responsabilidades Ministeriais</h3>
+                        <ul>
+                            <li><strong>Batismo:</strong> Administrar o sacramento do batismo conforme a fórmula bíblica</li>
+                            <li><strong>Santa Ceia:</strong> Presidir a celebração da Santa Ceia</li>
+                            <li><strong>Unção dos Enfermos:</strong> Ministrar a unção conforme Tiago 5:14</li>
+                            <li><strong>Exortação da Palavra:</strong> Ministrar a Palavra de Deus com autoridade espiritual</li>
+                            <li><strong>Orientação Espiritual:</strong> Aconselhar e orientar os irmãos conforme a sã doutrina</li>
+                        </ul>
+                        
+                        <h3>Autoridade Ministerial</h3>
+                        <p>A autoridade do ancião é outorgada pelo presbitério mediante imposição das mãos, conforme o padrão apostólico:</p>
+                        <div class="bible-verse">"Por esta causa te deixei em Creta, para que pusesses em boa ordem as coisas que ainda restam, e de cidade em cidade estabelecesses presbíteros, como já te mandei" (Tito 1:5)</div>
+                        
+                        <h3>Conduta Ministerial</h3>
+                        <p>O ancião deve ser exemplo em palavra, conduta, amor, espírito, fé e pureza, sendo modelo para o rebanho:</p>
+                        <div class="bible-verse">"Apascentai o rebanho de Deus, que está entre vós, tendo cuidado dele, não por força, mas voluntariamente; nem por torpe ganância, mas de ânimo pronto" (1 Pedro 5:2)</div>
+                        
+                        <p><strong>Vossos irmãos em Cristo</strong></p>
+                    `
+                }
+            };
+            
+            // Add default content for missing modals
+            if (!contents[contentId]) {
+                return {
+                    title: 'Conteúdo em Desenvolvimento',
+                    body: '<p><strong>Caros irmãos, A paz de Deus seja convosco.</strong></p><p>Este conteúdo está sendo desenvolvido conforme a sã doutrina da Palavra de Deus. Em breve estará disponível com todos os detalhes necessários para a formação ministerial.</p><p><strong>Vossos irmãos em Cristo</strong></p>'
+                };
+            }
+            
+            return contents[contentId];
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Site CCB Moçambique carregado com sucesso');
+        });
+    </script>
+</body>
+</html>
+
