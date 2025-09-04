@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuais Ministeriais - CCB Moçambique</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4a5568;
+        }
+
+        .logo::before {
+            content: "📖";
+            margin-right: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            padding: 120px 2rem 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #4a5568;
+        }
+
+        .feature-card p {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .section {
+            display: none;
+            padding: 120px 2rem 80px;
+            min-height: 100vh;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section-title {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            background: #e2e8f0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #4a5568;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px 15px 0 0;
+            position: relative;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 2rem;
+            line-height: 1.8;
+        }
+
+        .progress-info {
+            background: #e6f3ff;
+            border-left: 4px solid #667eea;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .step {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            background: #f8fafc;
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .step h4 {
+            color: #4a5568;
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+        }
+
+        .step p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .bible-verse {
+            background: #f0f9ff;
+            border-left: 4px solid #0ea5e9;
+            padding: 1rem;
+            font-style: italic;
+            color: #0369a1;
+            border-radius: 0 8px 8px 0;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 140px 1rem 60px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+            }
+
+            .modal-header,
+            .modal-body {
+                padding: 1.5rem;
+            }
+        }
+
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin-right: 0.5rem;
+        }
+
+        .breadcrumb a:hover {
+            color: white;
+        }
+
+        .breadcrumb span {
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Manuais Ministeriais <span style="font-size: 0.8rem; color: #666;">CCB Moçambique</span></div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showSection('home')" class="active">Início</a></li>
+                <li><a href="#" onclick="showSection('doutrina')">Doutrina</a></li>
+                <li><a href="#" onclick="showSection('guias')">Guias Práticos</a></li>
+                <li><a href="#" onclick="showSection('manuais')">Manuais</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Seção Inicial -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <h1>Formação Ministerial para Moçambique</h1>
+                <p>Caros irmãos, A paz de Deus seja convosco. Manuais completos para formação e orientação de obreiros da Congregação Cristã no Brasil, especialmente adaptados para o contexto missionário de Moçambique, conforme a sã doutrina da Palavra de Deus e os santos princípios da bendita obra.</p>
+                
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">Manuais Completos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Guias Práticos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Base Bíblica</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">Responsivo</div>
+                        <div class="stat-label">Funciona em Qualquer Dispositivo</div>
+                    </div>
+                </div>
+
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon">📖</div>
+                        <h3>Fundamentos Doutrinários</h3>
+                        <p>Base bíblica sólida conforme a sã doutrina da Palavra de Deus e os santos princípios da bendita obra</p>
+                        <button class="btn" onclick="openModal('doutrinaModal')">Acessar Doutrina</button>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔧</div>
+                        <h3>Guias Práticos</h3>
+                        <p>Procedimentos passo a passo para atividades ministeriais conforme a tradição apostólica da CCB</p>
+                        <button class="btn" onclick="showSection('guias')">Ver Guias</button>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👥</div>
+                        <h3>Manuais Ministeriais</h3>
+                        <p>Orientações específicas para cada cargo ministerial conforme a estrutura organizacional da bendita obra</p>
+                        <button class="btn" onclick="showSection('manuais')">Ver Manuais</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Guias Práticos -->
+        <section id="guias" class="section">
+            <div class="breadcrumb">
+                <a href="#" onclick="showSection('home')">🏠 Início</a>
+                <span>></span>
+                Guias Práticos
+            </div>
+            
+            <h2 class="section-title">🔧 Guias Práticos</h2>
+            <p class="section-subtitle">Procedimentos passo a passo para atividades ministeriais conforme a sã doutrina e tradição apostólica da bendita obra</p>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Como Atender Culto</h3>
+                    </div>
+                    <div class="card-meta">
+                        <span class="meta-item">11 passos</span>
+                        <span class="meta-item">1h:30m</span>
+                        <span class="meta-item">Ancião/Cooperador</span>
+                    </div>
+                    <p>Roteiro completo para conduzir cultos com ordem e reverência, desde a abertura até o encerramento, seguindo a sequência tradicional estabelecida pela bendita obra de Deus.</p>
+                    <button class="btn" onclick="openModal('guiaCultoModal')">Iniciar Guia</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Como Atender Batismo</h3>
+                    </div>
+                    <div class="card-meta">
+                        <span class="meta-item">13 passos</span>
+                        <span class="meta-item">1h:30m</span>
+                        <span class="meta-item">Ancião</span>
+                    </div>
+                    <p>Procedimentos completos para o sacramento do batismo, incluindo preparação espiritual, verificações necessárias e a cerimônia propriamente dita conforme a sã doutrina.</p>
+                    <button class="btn" onclick="openModal('guiaBatismoModal')">Iniciar Guia</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Como Atender Santa Ceia</h3>
+                    </div>
+                    <div class="card-meta">
+                        <span class="meta-item">10 passos</span>
+                        <span class="meta-item">1h:30m</span>
+                        <span class="meta-item">Ancião</span>
+                    </div>
+                    <p>Orientações para a celebração da Santa Ceia, incluindo preparação dos elementos, ordem hierárquica e procedimentos específicos conforme a tradição apostólica.</p>
+                    <button class="btn" onclick="openModal('guiaSantaCeiaModal')">Iniciar Guia</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Como Atender Unção</h3>
+                    </div>
+                    <div class="card-meta">
+                        <span class="meta-item">8 passos</span>
+                        <span class="meta-item">1h:30m</span>
+                        <span class="meta-item">Ancião/Cooperador</span>
+                    </div>
+                    <p>Procedimentos para a unção dos enfermos, incluindo preparação espiritual, oração e aplicação do óleo sagrado conforme a doutrina bíblica e santos princípios.</p>
+                    <button class="btn" onclick="openModal('guiaUncaoModal')">Iniciar Guia</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Como Conduzir Reunião de Jovens</h3>
+                    </div>
+                    <div class="card-meta">
+                        <span class="meta-item">6 passos</span>
+                        <span class="meta-item">1h:30m</span>
+                        <span class="meta-item">CJM</span>
+                    </div>
+                    <p>Estrutura para reuniões de jovens e menores, incluindo atividades educativas, momentos de oração e ensino adaptado conforme os santos princípios da Palavra de Deus.</p>
+                    <button class="btn" onclick="openModal('guiaJovensModal')">Iniciar Guia</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Como Organizar Ensaio Musical</h3>
+                    </div>
+                    <div class="card-meta">
+                        <span class="meta-item">6 passos</span>
+                        <span class="meta-item">1h:30m</span>
+                        <span class="meta-item">Encarregado</span>
+                    </div>
+                    <p>Organização de ensaios musicais, incluindo preparação de hinos, coordenação de instrumentos e orientação para músicos e organistas conforme os métodos oficiais.</p>
+                    <button class="btn" onclick="openModal('guiaEnsaioModal')">Iniciar Guia</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Como Receber Visitantes</h3>
+                    </div>
+                    <div class="card-meta">
+                        <span class="meta-item">8 passos</span>
+                        <span class="meta-item">1h:30m</span>
+                        <span class="meta-item">Porteiro</span>
+                    </div>
+                    <p>Procedimentos para recepção de visitantes, incluindo orientações sobre a casa de oração, apresentação da doutrina e acompanhamento inicial conforme a hospitalidade cristã.</p>
+                    <button class="btn" onclick="openModal('guiaVisitantesModal')">Iniciar Guia</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Como Conduzir Obra da Piedade</h3>
+                    </div>
+                    <div class="card-meta">
+                        <span class="meta-item">7 passos</span>
+                        <span class="meta-item">1h:30m</span>
+                        <span class="meta-item">Diácono</span>
+                    </div>
+                    <p>Orientações para a obra da piedade, incluindo visitação aos necessitados, distribuição de auxílios e acompanhamento espiritual conforme a doutrina apostólica e bendita obra.</p>
+                    <button class="btn" onclick="openModal('guiaObraPiedadeModal')">Iniciar Guia</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Manuais -->
+        <section id="manuais" class="section">
+            <div class="breadcrumb">
+                <a href="#" onclick="showSection('home')">🏠 Início</a>
+                <span>></span>
+                Manuais
+            </div>
+            
+            <h2 class="section-title">👥 Manuais por Ministério</h2>
+            <p class="section-subtitle">Orientações específicas para cada cargo ministerial conforme a estrutura organizacional da bendita obra de Deus</p>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Ancião</h3>
+                    </div>
+                    <div class="card-meta">
+                        <span class="meta-item">Ordenado</span>
+                    </div>
+                    <p>Responsabilidades de batismo, Santa Ceia, unção dos enfermos e exortação da palavra conforme a autoridade ministerial outorgada pelo presbitério e a multiforme graça de Deus.</p>
+                    <button class="btn" onclick="openModal('manualAnciaoModal')">Ver Manual</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Cooperador do Ofício Ministerial</h3>
+                    </div>
+                    <div class="card-meta">
+                        <span class="meta-item">Apresentado</span>
+                    </div>
+                    <p>Atendimento geral da casa de oração, auxílio ao presbitério e cooperação nas atividades ministeriais conforme orientação dos anciãos e santos princípios.</p>
+                    <button class="btn" onclick="openModal('manualCooperadorModal')">Ver Manual</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Diácono</h3>
+                    </div>
+                    <div class="card-meta">
+                        <span class="meta-item">Ordenado</span>
+                    </div>
+                    <p>Obra da Piedade, assistência aos necessitados e administração dos recursos destinados ao auxílio fraternal conforme a doutrina apostólica e bendita obra de Deus.</p>
+                    <button class="btn" onclick="openModal('manualDiaconoModal')">Ver Manual</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Cooperador de Jovens e Menores</h3>
+                    </div>
+                    <div class="card-meta">
+                        <span class="meta-item">Apresentado</span>
+                    </div>
+                    <p>Responsável pelo ensino e orientação da mocidade conforme os santos princípios da Palavra de Deus, conduzindo reuniões específicas e formação espiritual.</p>
+                    <button class="btn" onclick="openModal('manualCJMModal')">Ver Manual</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Porteiro</h3>
+                    </div>
+                    <div class="card-meta">
+                        <span class="meta-item">Apresentado</span>
+                    </div>
+                    <p>Recepção de visitantes, manutenção da ordem na casa de oração e auxílio nas atividades gerais da comum congregação conforme a hospitalidade cristã.</p>
+                    <button class="btn" onclick="openModal('manualPorteiroModal')">Ver Manual</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Auxiliar de Ordem</h3>
+                    </div>
+                    <div class="card-meta">
+                        <span class="meta-item">Apresentado</span>
+                    </div>
+                    <p>Assistência na manutenção da ordem durante os cultos, auxílio aos porteiros e cooperação nas atividades da casa de oração conforme os santos princípios.</p>
+                    <button class="btn" onclick="openModal('manualAuxiliarModal')">Ver Manual</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Encarregado Regional de Música</h3>
+                    </div>
+                    <div class="card-meta">
+                        <span class="meta-item">Musical</span>
+                    </div>
+                    <p>Coordenação regional das atividades musicais, orientação aos encarregados locais e supervisão dos ensaios conforme os métodos oficiais da bendita obra.</p>
+                    <button class="btn" onclick="openModal('manualEncarregadoRegionalModal')">Ver Manual</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Encarregado de Orquestra</h3>
+                    </div>
+                    <div class="card-meta">
+                        <span class="meta-item">Musical</span>
+                    </div>
+                    <p>Regência da orquestra local, coordenação dos instrumentistas e organização dos ensaios conforme as instruções regulamentares e métodos estabelecidos.</p>
+                    <button class="btn" onclick="openModal('manualEncarregadoOrquestraModal')">Ver Manual</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Instrutor de Música</h3>
+                    </div>
+                    <div class="card-meta">
+                        <span class="meta-item">Musical</span>
+                    </div>
+                    <p>Ensino musical aos irmãos, instrução nos métodos oficiais e formação de novos músicos conforme os padrões estabelecidos pela bendita obra de Deus.</p>
+                    <button class="btn" onclick="openModal('manualInstrutorModal')">Ver Manual</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Músico Oficializado</h3>
+                    </div>
+                    <div class="card-meta">
+                        <span class="meta-item">Musical</span>
+                    </div>
+                    <p>Execução musical durante os cultos, participação nos ensaios e cooperação nas atividades musicais conforme a tradição e métodos da Congregação Cristã.</p>
+                    <button class="btn" onclick="openModal('manualMusicoModal')">Ver Manual</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Organista Examinadora</h3>
+                    </div>
+                    <div class="card-meta">
+                        <span class="meta-item">Musical</span>
+                    </div>
+                    <p>Acompanhamento musical nos cultos, exame de novos músicos e orientação técnica conforme os padrões musicais estabelecidos pela bendita obra.</p>
+                    <button class="btn" onclick="openModal('manualOrganistaModal')">Ver Manual</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Missionário</h3>
+                    </div>
+                    <div class="card-meta">
+                        <span class="meta-item">Especial</span>
+                    </div>
+                    <p>Trabalho evangelístico, abertura de novas congregações e orientação inicial conforme a Grande Comissão e os santos princípios da Palavra de Deus.</p>
+                    <button class="btn" onclick="openModal('manualMissionarioModal')">Ver Manual</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modais -->
+    <div id="doutrinaModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📖 Fundamentos Doutrinários</h2>
+                <span class="close" onclick="closeModal('doutrinaModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="progress-info">
+                    <strong>Caros irmãos, A paz de Deus seja convosco.</strong><br>
+                    Fundamentos doutrinários da Congregação Cristã no Brasil conforme a sã doutrina da Palavra de Deus.
+                </div>
+                
+                <div class="step">
+                    <h4>Base Bíblica</h4>
+                    <p>Nossa doutrina está fundamentada exclusivamente na Bíblia Sagrada, reconhecendo-a como a única regra de fé e prática, inspirada por Deus e infalível em todos os seus ensinos conforme a tradição apostólica.</p>
+                    <div class="bible-verse">"Toda a Escritura é divinamente inspirada, e proveitosa para ensinar, para redarguir, para corrigir, para instruir em justiça" (2 Timóteo 3:16)</div>
+                </div>
+
+                <div class="step">
+                    <h4>Salvação pela Graça</h4>
+                    <p>Cremos que a salvação é pela graça de Deus, mediante a fé em Jesus Cristo, não por obras, para que ninguém se glorie. É um dom gratuito de Deus para todos os que creem conforme a multiforme graça de Deus.</p>
+                    <div class="bible-verse">"Porque pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus" (Efésios 2:8)</div>
+                </div>
+
+                <div class="step">
+                    <h4>Batismo por Imersão</h4>
+                    <p>O batismo é administrado por imersão em águas, em nome do Senhor Jesus Cristo, para remissão dos pecados, sendo um mandamento bíblico para todos os que creem conforme os santos princípios da bendita obra.</p>
+                    <div class="bible-verse">"Arrependei-vos, e cada um de vós seja batizado em nome de Jesus Cristo para remissão dos vossos pecados" (Atos 2:38)</div>
+                </div>
+
+                <div class="step">
+                    <h4>Dom do Espírito Santo</h4>
+                    <p>O batismo com o Espírito Santo é uma promessa para todos os crentes, manifestado inicialmente pelo falar em línguas estranhas, conforme a operação da força do seu poder e a vontade divina.</p>
+                    <div class="bible-verse">"E todos foram cheios do Espírito Santo, e começaram a falar noutras línguas, conforme o Espírito Santo lhes concedia que falassem" (Atos 2:4)</div>
+                </div>
+
+                <div class="step">
+                    <h4>Santa Ceia</h4>
+                    <p>A Santa Ceia é celebrada com pão e vinho, símbolos do corpo e sangue de Cristo, em memória do seu sacrifício, sendo um sacramento instituído pelo próprio Senhor Jesus conforme a sã doutrina.</p>
+                    <div class="bible-verse">"Fazei isto em memória de mim" (1 Coríntios 11:24)</div>
+                </div>
+
+                <p style="text-align: center; margin-top: 2rem; font-style: italic; color: #666;">
+                    Vossos irmãos em Cristo<br>
+                    Congregação Cristã no Brasil
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Guia Culto -->
+    <div id="guiaCultoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Como Atender Culto</h2>
+                <span class="close" onclick="closeModal('guiaCultoModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="guiaCultoContent">
+                <!-- Conteúdo será carregado dinamicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Guia Batismo -->
+    <div id="guiaBatismoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Como Atender Batismo</h2>
+                <span class="close" onclick="closeModal('guiaBatismoModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="guiaBatismoContent">
+                <!-- Conteúdo será carregado dinamicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Guia Santa Ceia -->
+    <div id="guiaSantaCeiaModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Como Atender Santa Ceia</h2>
+                <span class="close" onclick="closeModal('guiaSantaCeiaModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="guiaSantaCeiaContent">
+                <!-- Conteúdo será carregado dinamicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Guia Unção -->
+    <div id="guiaUncaoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Como Atender Unção</h2>
+                <span class="close" onclick="closeModal('guiaUncaoModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="guiaUncaoContent">
+                <!-- Conteúdo será carregado dinamicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Guia Jovens -->
+    <div id="guiaJovensModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Como Conduzir Reunião de Jovens</h2>
+                <span class="close" onclick="closeModal('guiaJovensModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="guiaJovensContent">
+                <!-- Conteúdo será carregado dinamicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Guia Ensaio -->
+    <div id="guiaEnsaioModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Como Organizar Ensaio Musical</h2>
+                <span class="close" onclick="closeModal('guiaEnsaioModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="guiaEnsaioContent">
+                <!-- Conteúdo será carregado dinamicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Guia Visitantes -->
+    <div id="guiaVisitantesModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Como Receber Visitantes</h2>
+                <span class="close" onclick="closeModal('guiaVisitantesModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="guiaVisitantesContent">
+                <!-- Conteúdo será carregado dinamicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Guia Obra da Piedade -->
+    <div id="guiaObraPiedadeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Como Conduzir Obra da Piedade</h2>
+                <span class="close" onclick="closeModal('guiaObraPiedadeModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="guiaObraPiedadeContent">
+                <!-- Conteúdo será carregado dinamicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Manual Ancião -->
+    <div id="manualAnciaoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Manual do Ancião</h2>
+                <span class="close" onclick="closeModal('manualAnciaoModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="manualAnciaoContent">
+                <!-- Conteúdo será carregado dinamicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modais para outros manuais (serão criados dinamicamente) -->
+    <div id="manualCooperadorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Manual do Cooperador do Ofício Ministerial</h2>
+                <span class="close" onclick="closeModal('manualCooperadorModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="manualCooperadorContent"></div>
+        </div>
+    </div>
+
+    <div id="manualDiaconoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Manual do Diácono</h2>
+                <span class="close" onclick="closeModal('manualDiaconoModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="manualDiaconoContent"></div>
+        </div>
+    </div>
+
+    <div id="manualCJMModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Manual do Cooperador de Jovens e Menores</h2>
+                <span class="close" onclick="closeModal('manualCJMModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="manualCJMContent"></div>
+        </div>
+    </div>
+
+    <div id="manualPorteiroModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Manual do Porteiro</h2>
+                <span class="close" onclick="closeModal('manualPorteiroModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="manualPorteiroContent"></div>
+        </div>
+    </div>
+
+    <div id="manualAuxiliarModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Manual do Auxiliar de Ordem</h2>
+                <span class="close" onclick="closeModal('manualAuxiliarModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="manualAuxiliarContent"></div>
+        </div>
+    </div>
+
+    <div id="manualEncarregadoRegionalModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Manual do Encarregado Regional de Música</h2>
+                <span class="close" onclick="closeModal('manualEncarregadoRegionalModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="manualEncarregadoRegionalContent"></div>
+        </div>
+    </div>
+
+    <div id="manualEncarregadoOrquestraModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Manual do Encarregado de Orquestra</h2>
+                <span class="close" onclick="closeModal('manualEncarregadoOrquestraModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="manualEncarregadoOrquestraContent"></div>
+        </div>
+    </div>
+
+    <div id="manualInstrutorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Manual do Instrutor de Música</h2>
+                <span class="close" onclick="closeModal('manualInstrutorModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="manualInstrutorContent"></div>
+        </div>
+    </div>
+
+    <div id="manualMusicoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Manual do Músico Oficializado</h2>
+                <span class="close" onclick="closeModal('manualMusicoModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="manualMusicoContent"></div>
+        </div>
+    </div>
+
+    <div id="manualOrganistaModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Manual do Organista Examinadora</h2>
+                <span class="close" onclick="closeModal('manualOrganistaModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="manualOrganistaContent"></div>
+        </div>
+    </div>
+
+    <div id="manualMissionarioModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Manual do Missionário</h2>
+                <span class="close" onclick="closeModal('manualMissionarioModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="manualMissionarioContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Função para mostrar seções
+        function showSection(sectionId) {
+            // Esconder todas as seções
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Mostrar seção selecionada
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Atualizar navegação
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Encontrar e ativar o link correspondente
+            const activeLink = document.querySelector(`[onclick="showSection('${sectionId}')"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+
+        // Função para abrir modal
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                
+                // Carregar conteúdo dinamicamente
+                loadModalContent(modalId);
+            }
+        }
+
+        // Função para fechar modal
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Fechar modal clicando fora
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Função para carregar conteúdo dos modais
+        function loadModalContent(modalId) {
+            const contentId = modalId.replace('Modal', '');
+            const content = getModalContent(contentId);
+            
+            if (content) {
+                const contentElement = document.getElementById(contentId + 'Content');
+                if (contentElement) {
+                    contentElement.innerHTML = content.body;
+                }
+            }
+        }
+
+        // Função para obter conteúdo dos modais
+        function getModalContent(contentId) {
+            const contents = {
+                'guiaCulto': {
+                    title: 'Como Atender Culto',
+                    body: `
+                        <div class="progress-info">
+                            <strong>Caros irmãos, A paz de Deus seja convosco.</strong><br>
+                            Progresso: 0 de 11 passos concluídos
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>Abertura do Culto</h4>
+                            <p>Iniciar o culto com a saudação oficial: "Caros irmãos, A paz de Deus seja convosco" seguida da invocação ao nome do Senhor Jesus Cristo conforme a tradição apostólica da bendita obra.</p>
+                            <div class="bible-verse">"Porque onde estiverem dois ou três reunidos em meu nome, aí estou eu no meio deles" (Mateus 18:20)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>Primeiro Hino</h4>
+                            <p>Convidar a irmandade para o canto do primeiro hino, permitindo que o Espírito Santo guie a escolha conforme a multiforme graça de Deus manifestada na congregação.</p>
+                            <div class="bible-verse">"Cantai ao Senhor um cântico novo; cantai ao Senhor, toda a terra" (Salmos 96:1)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>Primeira Oração</h4>
+                            <p>Convidar um irmão para fazer a primeira oração, consagrando o culto e pedindo a bênção de Deus sobre a congregação conforme os santos princípios da Palavra de Deus.</p>
+                            <div class="bible-verse">"Orai sem cessar" (1 Tessalonicenses 5:17)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h4>Segundo Hino</h4>
+                            <p>Após a oração, convidar para o segundo hino, mantendo a ordem e reverência no louvor conforme a operação da força do seu poder na comum congregação.</p>
+                            <div class="bible-verse">"Louvai ao Senhor com harpa; cantai-lhe com saltério de dez cordas" (Salmos 33:2)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <h4>Leitura Bíblica</h4>
+                            <p>Fazer a leitura de uma passagem bíblica, escolhida conforme a orientação do Espírito Santo, para edificação da irmandade na sã doutrina da Palavra de Deus.</p>
+                            <div class="bible-verse">"Toda a Escritura é divinamente inspirada, e proveitosa para ensinar" (2 Timóteo 3:16)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <h4>Terceiro Hino</h4>
+                            <p>Convidar para o terceiro hino, preparando os corações para a exortação da Palavra conforme a tradição apostólica estabelecida pela bendita obra.</p>
+                            <div class="bible-verse">"Falando entre vós em salmos, e hinos, e cânticos espirituais" (Efésios 5:19)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">7</div>
+                            <h4>Exortação da Palavra</h4>
+                            <p>Ministrar a Palavra de Deus conforme a revelação do Espírito Santo, edificando a fé da congregação nos santos princípios da bendita obra e sã doutrina.</p>
+                            <div class="bible-verse">"Prega a palavra, insta, quer seja oportuno, quer não" (2 Timóteo 4:2)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">8</div>
+                            <h4>Quarto Hino</h4>
+                            <p>Após a exortação, convidar para o quarto hino, permitindo que a Palavra ministrada seja selada nos corações através do louvor conforme a multiforme graça de Deus.</p>
+                            <div class="bible-verse">"A palavra de Cristo habite em vós abundantemente" (Colossenses 3:16)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">9</div>
+                            <h4>Testemunhos e Pedidos</h4>
+                            <p>Abrir espaço para testemunhos e pedidos de oração da irmandade, permitindo que compartilhem as maravilhas de Deus conforme a operação da força do seu poder.</p>
+                            <div class="bible-verse">"Confessai as vossas culpas uns aos outros e orai uns pelos outros" (Tiago 5:16)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">10</div>
+                            <h4>Oração Final</h4>
+                            <p>Convidar um irmão para a oração final, entregando a congregação aos cuidados de Deus e pedindo Sua bênção sobre todos conforme a tradição apostólica.</p>
+                            <div class="bible-verse">"A graça do Senhor Jesus Cristo, e o amor de Deus, e a comunhão do Espírito Santo sejam com todos vós" (2 Coríntios 13:14)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">11</div>
+                            <h4>Encerramento</h4>
+                            <p>Encerrar o culto com a bênção apostólica e despedida, desejando que a paz de Deus permaneça com todos os irmãos conforme os santos princípios da bendita obra.</p>
+                            <div class="bible-verse">"Ide em paz, e o Deus de amor e de paz seja convosco" (2 Coríntios 13:11)</div>
+                        </div>
+
+                        <p style="text-align: center; margin-top: 2rem; font-style: italic; color: #666;">
+                            Vossos irmãos em Cristo<br>
+                            Congregação Cristã no Brasil
+                        </p>
+                    `
+                },
+                'guiaBatismo': {
+                    title: 'Como Atender Batismo',
+                    body: `
+                        <div class="progress-info">
+                            <strong>Caros irmãos, A paz de Deus seja convosco.</strong><br>
+                            Progresso: 0 de 13 passos concluídos
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>Preparação Espiritual</h4>
+                            <p>Buscar ao Senhor em oração, pedindo orientação e bênção para a administração do sacramento do batismo conforme a sã doutrina da Palavra de Deus e santos princípios da bendita obra.</p>
+                            <div class="bible-verse">"E disse-lhes Pedro: Arrependei-vos, e cada um de vós seja batizado em nome de Jesus Cristo para remissão dos vossos pecados" (Atos 2:38)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>Verificação das Condições</h4>
+                            <p>Verificar se o novo convertido atende às condições bíblicas para o batismo: arrependimento sincero, fé em Jesus Cristo e decisão consciente de seguir a Cristo conforme a tradição apostólica.</p>
+                            <div class="bible-verse">"Quem crer e for batizado será salvo" (Marcos 16:16)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>Preparação do Local</h4>
+                            <p>Preparar o batistério ou local apropriado para o batismo, verificando a temperatura da água e as condições de segurança conforme a multiforme graça de Deus nos orienta.</p>
+                            <div class="bible-verse">"Mas faça-se tudo decentemente e com ordem" (1 Coríntios 14:40)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h4>Exortação sobre o Batismo</h4>
+                            <p>Ministrar uma breve exortação sobre o significado do batismo, explicando que é um sepultamento com Cristo e ressurreição para uma nova vida conforme a operação da força do seu poder.</p>
+                            <div class="bible-verse">"Fomos sepultados com ele pelo batismo na morte; para que, como Cristo ressuscitou dos mortos, assim andemos nós também em novidade de vida" (Romanos 6:4)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <h4>Entrada na Água</h4>
+                            <p>Conduzir o novo convertido para dentro da água com cuidado e reverência, mantendo a ordem e solenidade do momento conforme os santos princípios da bendita obra.</p>
+                            <div class="bible-verse">"E desceram ambos à água, tanto Filipe como o eunuco, e o batizou" (Atos 8:38)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <h4>Confissão de Fé</h4>
+                            <p>Pedir ao novo convertido que faça sua confissão de fé em Jesus Cristo como seu Salvador e Senhor, demonstrando sua decisão consciente conforme a sã doutrina da Palavra de Deus.</p>
+                            <div class="bible-verse">"Se com a tua boca confessares ao Senhor Jesus, e em teu coração creres que Deus o ressuscitou dos mortos, serás salvo" (Romanos 10:9)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">7</div>
+                            <h4>Fórmula Oficial do Batismo</h4>
+                            <p>Pronunciar a fórmula oficial estabelecida pela bendita obra: "Irmão, em nome de Jesus eu te batizo, em nome do Pai, do Filho e do Espírito Santo" conforme a tradição apostólica.</p>
+                            <div class="bible-verse">"Portanto ide, fazei discípulos de todas as nações, batizando-os em nome do Pai, e do Filho, e do Espírito Santo" (Mateus 28:19)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">8</div>
+                            <h4>Imersão Completa</h4>
+                            <p>Realizar a imersão completa do novo convertido na água, simbolizando o sepultamento do velho homem e a ressurreição para uma nova vida em Cristo conforme a multiforme graça de Deus.</p>
+                            <div class="bible-verse">"Ou não sabeis que todos quantos fomos batizados em Jesus Cristo fomos batizados na sua morte?" (Romanos 6:3)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">9</div>
+                            <h4>Exortação sobre o Significado</h4>
+                            <p>Após a imersão, exortar o novo batizado sobre o significado espiritual do ato realizado, enfatizando que agora é uma nova criatura em Cristo conforme a operação da força do seu poder.</p>
+                            <div class="bible-verse">"Assim que, se alguém está em Cristo, nova criatura é; as coisas velhas já passaram; eis que tudo se fez novo" (2 Coríntios 5:17)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">10</div>
+                            <h4>Saída da Água</h4>
+                            <p>Auxiliar o novo batizado a sair da água com cuidado, mantendo a reverência e alegria do momento conforme os santos princípios da bendita obra estabelecidos pela tradição apostólica.</p>
+                            <div class="bible-verse">"E logo que saiu da água, viu os céus abertos, e o Espírito, que como pomba descia sobre ele" (Marcos 1:10)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">11</div>
+                            <h4>Oração de Gratidão</h4>
+                            <p>Fazer uma oração de gratidão a Deus pela obra realizada, pedindo que o Senhor abençoe e guarde o novo membro da família de Deus conforme a sã doutrina da Palavra de Deus.</p>
+                            <div class="bible-verse">"Em tudo dai graças, porque esta é a vontade de Deus em Cristo Jesus para convosco" (1 Tessalonicenses 5:18)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">12</div>
+                            <h4>Orientações Finais</h4>
+                            <p>Dar orientações finais ao novo batizado sobre a vida cristã, a importância da oração, leitura bíblica e comunhão com a irmandade conforme a multiforme graça de Deus.</p>
+                            <div class="bible-verse">"Desejai afetuosamente, como meninos novamente nascidos, o leite racional, não falsificado, para que por ele vades crescendo" (1 Pedro 2:2)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">13</div>
+                            <h4>Recepção na Congregação</h4>
+                            <p>Apresentar o novo batizado à congregação, pedindo que a irmandade o receba com amor fraternal e o auxilie em sua caminhada cristã conforme os santos princípios da bendita obra.</p>
+                            <div class="bible-verse">"Recebei-vos uns aos outros, como também Cristo nos recebeu para glória de Deus" (Romanos 15:7)</div>
+                        </div>
+
+                        <p style="text-align: center; margin-top: 2rem; font-style: italic; color: #666;">
+                            Vossos irmãos em Cristo<br>
+                            Congregação Cristã no Brasil
+                        </p>
+                    `
+                },
+                'guiaSantaCeia': {
+                    title: 'Como Atender Santa Ceia',
+                    body: `
+                        <div class="progress-info">
+                            <strong>Caros irmãos, A paz de Deus seja convosco.</strong><br>
+                            Progresso: 0 de 10 passos concluídos
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>Preparação Espiritual</h4>
+                            <p>Buscar ao Senhor em oração, pedindo orientação e bênção para a celebração da Santa Ceia conforme a vontade divina e santos princípios da bendita obra.</p>
+                            <div class="bible-verse">"Examine-se, pois, o homem a si mesmo, e assim coma do pão, e beba do cálice" (1 Coríntios 11:28)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>Preparação dos Elementos</h4>
+                            <p>Preparar o pão e o vinho conforme a tradição apostólica, verificando a qualidade e quantidade necessária para a congregação presente conforme os santos princípios.</p>
+                            <div class="bible-verse">"E, tomando o pão e dando graças, o partiu e deu-lho, dizendo: Isto é o meu corpo, que por vós é dado" (Lucas 22:19)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>Ordem Hierárquica</h4>
+                            <p>Observar a ordem hierárquica estabelecida pela bendita obra: primeiro os anciãos, depois cooperadores, diáconos e demais irmãos conforme a tradição apostólica.</p>
+                            <div class="bible-verse">"Mas faça-se tudo decentemente e com ordem" (1 Coríntios 14:40)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h4>Leitura Bíblica</h4>
+                            <p>Ler passagem bíblica sobre a instituição da Santa Ceia, edificando a fé dos presentes conforme a sã doutrina da Palavra de Deus.</p>
+                            <div class="bible-verse">"Porque eu recebi do Senhor o que também vos ensinei: que o Senhor Jesus, na noite em que foi traído, tomou o pão" (1 Coríntios 11:23)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <h4>Consagração do Pão</h4>
+                            <p>O Cooperador abençoa o pão com a oração: "Nesse momento eu peço que o Senhor abençoe esse pão, que simboliza o corpo de Cristo" conforme a tradição da bendita obra.</p>
+                            <div class="bible-verse">"E, tomando o pão e dando graças, o partiu e deu-lho" (Lucas 22:19)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <h4>Distribuição do Pão</h4>
+                            <p>Distribuir o pão seguindo a ordem hierárquica estabelecida, mantendo a reverência e solenidade do momento conforme os santos princípios da Palavra de Deus.</p>
+                            <div class="bible-verse">"Isto é o meu corpo, que por vós é dado; fazei isto em memória de mim" (Lucas 22:19)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">7</div>
+                            <h4>Consagração do Vinho</h4>
+                            <p>O Diácono abençoa o vinho com a oração: "Nesse momento eu peço que o Senhor abençoe esse vinho, que simboliza o sangue de Cristo" conforme a doutrina apostólica.</p>
+                            <div class="bible-verse">"Semelhantemente, tomou o cálice, depois da ceia, dizendo: Este cálice é a nova aliança no meu sangue" (Lucas 22:20)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">8</div>
+                            <h4>Distribuição do Vinho</h4>
+                            <p>Distribuir o vinho seguindo a mesma ordem hierárquica, mantendo a reverência e contemplação do sacrifício de Cristo conforme a multiforme graça de Deus.</p>
+                            <div class="bible-verse">"Fazei isto, todas as vezes que beberdes, em memória de mim" (1 Coríntios 11:25)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">9</div>
+                            <h4>Momento de Reflexão</h4>
+                            <p>Proporcionar momento de reflexão e oração silenciosa, permitindo que cada irmão examine seu coração conforme a sã doutrina da Palavra de Deus.</p>
+                            <div class="bible-verse">"Porque, todas as vezes que comerdes este pão e beberdes este cálice, anunciais a morte do Senhor, até que venha" (1 Coríntios 11:26)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">10</div>
+                            <h4>Oração Final</h4>
+                            <p>Encerrar a celebração com oração de gratidão ao Senhor pela obra redentora, entregando a congregação aos cuidados divinos conforme a bendita obra.</p>
+                            <div class="bible-verse">"E, tendo cantado um hino, saíram para o monte das Oliveiras" (Mateus 26:30)</div>
+                        </div>
+
+                        <p style="text-align: center; margin-top: 2rem; font-style: italic; color: #666;">
+                            Vossos irmãos em Cristo<br>
+                            Congregação Cristã no Brasil
+                        </p>
+                    `
+                },
+                'guiaUncao': {
+                    title: 'Como Atender Unção',
+                    body: `
+                        <div class="progress-info">
+                            <strong>Caros irmãos, A paz de Deus seja convosco.</strong><br>
+                            Progresso: 0 de 8 passos concluídos
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>Preparação Espiritual</h4>
+                            <p>Buscar ao Senhor em oração, pedindo orientação e bênção para a ministração da unção conforme a vontade divina e santos princípios da bendita obra.</p>
+                            <div class="bible-verse">"E a oração da fé salvará o doente, e o Senhor o levantará" (Tiago 5:15)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>Verificação da Necessidade</h4>
+                            <p>Verificar a real necessidade da unção, conversando com o enfermo ou familiares sobre a situação conforme a sã doutrina da Palavra de Deus.</p>
+                            <div class="bible-verse">"Está alguém entre vós doente? Chame os presbíteros da igreja" (Tiago 5:14)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>Preparação do Óleo</h4>
+                            <p>Preparar o óleo sagrado conforme a tradição apostólica, verificando se está consagrado e adequado para a ministração conforme os santos princípios.</p>
+                            <div class="bible-verse">"E orem sobre ele, ungindo-o com azeite em nome do Senhor" (Tiago 5:14)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h4>Leitura Bíblica</h4>
+                            <p>Ler passagem bíblica sobre a unção dos enfermos, edificando a fé dos presentes conforme a sã doutrina da Palavra de Deus.</p>
+                            <div class="bible-verse">"Confessai as vossas culpas uns aos outros e orai uns pelos outros, para que sareis" (Tiago 5:16)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <h4>Oração de Consagração</h4>
+                            <p>Fazer oração de consagração do momento, pedindo a bênção do Senhor sobre a ministração conforme a multiforme graça de Deus manifestada.</p>
+                            <div class="bible-verse">"Muito pode, por sua eficácia, a oração do justo" (Tiago 5:16)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <h4>Aplicação do Óleo</h4>
+                            <p>Aplicar o óleo sagrado na testa do enfermo, fazendo-o em nome do Senhor Jesus Cristo conforme a doutrina apostólica e santos princípios.</p>
+                            <div class="bible-verse">"E ungiam muitos enfermos com azeite e os curavam" (Marcos 6:13)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">7</div>
+                            <h4>Oração pela Cura</h4>
+                            <p>Orar especificamente pela cura do enfermo, entregando-o aos cuidados do Senhor conforme a vontade divina e operação da força do seu poder.</p>
+                            <div class="bible-verse">"E a oração da fé salvará o doente, e o Senhor o levantará; e, se houver cometido pecados, ser-lhe-ão perdoados" (Tiago 5:15)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">8</div>
+                            <h4>Orientação Final</h4>
+                            <p>Dar orientação final ao enfermo e familiares sobre a fé e confiança no Senhor, conforme a sã doutrina da Palavra de Deus e bendita obra.</p>
+                            <div class="bible-verse">"Mas ele foi ferido pelas nossas transgressões e moído pelas nossas iniquidades; o castigo que nos traz a paz estava sobre ele, e, pelas suas pisaduras, fomos sarados" (Isaías 53:5)</div>
+                        </div>
+
+                        <p style="text-align: center; margin-top: 2rem; font-style: italic; color: #666;">
+                            Vossos irmãos em Cristo<br>
+                            Congregação Cristã no Brasil
+                        </p>
+                    `
+                },
+                'guiaJovens': {
+                    title: 'Como Conduzir Reunião de Jovens',
+                    body: `
+                        <div class="progress-info">
+                            <strong>Caros irmãos, A paz de Deus seja convosco.</strong><br>
+                            Progresso: 0 de 6 passos concluídos
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>Invocação e Boas-Vindas</h4>
+                            <p>A reunião deve ser iniciada com uma saudação e invocação a Deus, reconhecendo a Sua soberania e a multiforme graça de Deus que nos permite estar reunidos. O irmão responsável pela condução deve proferir a frase padrão de abertura, adaptando-a se necessário para o contexto da reunião de jovens, sempre em nome do Senhor Jesus.</p>
+                            <div class="bible-verse">"Porque onde estiverem dois ou três reunidos em meu nome, aí estou eu no meio deles" (Mateus 18:20)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>Louvor e Adoração Através dos Hinos</h4>
+                            <p>Após a abertura, a irmandade será convidada a louvar a Deus através do canto de hinos do hinário. O irmão na presidência deve convidar a irmandade a chamar os hinos, permitindo que o Espírito Santo guie a escolha. Geralmente, são cantados três hinos neste momento, com a participação espontânea dos jovens.</p>
+                            <div class="bible-verse">"Falando entre vós em salmos, e hinos, e cânticos espirituais; cantando e salmodiando ao Senhor no vosso coração" (Efésios 5:19)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>Oração de Consagração e Súplica</h4>
+                            <p>Este é um momento crucial de busca pela presença divina. A primeira oração deve ser conduzida por um irmão, invocando a bênção de Deus sobre a reunião, consagrando o ambiente e os corações dos presentes. É um tempo de súplica e de entrega, onde a irmandade se coloca diante do Senhor.</p>
+                            <div class="bible-verse">"E tudo o que pedirdes na oração, crendo, o recebereis" (Mateus 21:22)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h4>A Revelação da Sã Doutrina</h4>
+                            <p>A exortação da Palavra de Deus é o ponto central da reunião. O irmão responsável, guiado pelo Espírito Santo, trará uma mensagem baseada na sã doutrina, que edifique, console e exorte a irmandade. Não se trata de uma pregação preparada, mas de uma revelação divina para o momento.</p>
+                            <div class="bible-verse">"Toda a Escritura é divinamente inspirada, e proveitosa para ensinar, para redarguir, para corrigir, para instruir em justiça" (2 Timóteo 3:16)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <h4>Compartilhando as Maravilhas de Deus e Orientações</h4>
+                            <p>Após a exortação, é dado espaço para que os jovens que sentirem no coração possam compartilhar testemunhos das maravilhas que Deus tem operado em suas vidas. É um momento de glorificar a Deus e edificar a fé uns dos outros. Em seguida, o irmão na presidência verificará se há anúncios importantes para a irmandade.</p>
+                            <div class="bible-verse">"Mas recebereis a virtude do Espírito Santo, que há de vir sobre vós; e ser-me-eis testemunhas" (Atos 1:8)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <h4>Consagração Final e Bênção</h4>
+                            <p>A reunião é encerrada com uma oração final, onde a irmandade é consagrada a Deus e a Sua bênção é invocada sobre todos. É um momento de gratidão e de entrega, pedindo a Deus que guarde e guie os jovens em seus caminhos conforme os santos princípios da bendita obra.</p>
+                            <div class="bible-verse">"O Senhor te abençoe e te guarde; o Senhor faça resplandecer o seu rosto sobre ti, e tenha misericórdia de ti" (Números 6:24-26)</div>
+                        </div>
+
+                        <p style="text-align: center; margin-top: 2rem; font-style: italic; color: #666;">
+                            Vossos irmãos em Cristo<br>
+                            Congregação Cristã no Brasil
+                        </p>
+                    `
+                },
+                'guiaEnsaio': {
+                    title: 'Como Organizar Ensaio Musical',
+                    body: `
+                        <div class="progress-info">
+                            <strong>Caros irmãos, A paz de Deus seja convosco.</strong><br>
+                            Progresso: 0 de 6 passos concluídos
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>Oração e Direção Divina</h4>
+                            <p>Todo ensaio musical na Congregação Cristã no Brasil deve iniciar e ser conduzido sob a direção divina. A oração é o alicerce de toda a nossa obra, e é através dela que buscamos a multiforme graça de Deus para que o Espírito Santo nos guie em cada nota e em cada melodia.</p>
+                            <div class="bible-verse">"Não andeis ansiosos por coisa alguma; antes em tudo sejam os vossos pedidos conhecidos diante de Deus pela oração e súplica, com ações de graças" (Filipenses 4:6-7)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>Seleção de Hinos e Instrumentos</h4>
+                            <p>A escolha dos hinos para o ensaio deve ser feita com discernimento e reverência, considerando a sã doutrina da Palavra de Deus e os santos princípios da bendita obra. Os hinos são veículos de louvor e adoração, e sua mensagem deve estar em plena consonância com a fé que professamos.</p>
+                            <div class="bible-verse">"Cantai-lhe um cântico novo; tocai bem e com júbilo" (Salmos 33:3)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>Definição de Horário e Local</h4>
+                            <p>A organização de um ensaio musical eficaz requer a definição clara de um horário e local adequados. É fundamental que o horário seja estabelecido de forma a permitir a participação da maior parte da irmandade envolvida, considerando suas disponibilidades e compromissos.</p>
+                            <div class="bible-verse">"Mas faça-se tudo decentemente e com ordem" (1 Coríntios 14:40)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h4>Condução do Ensaio com Ordem e Reverência</h4>
+                            <p>A condução do ensaio musical deve ser pautada pela ordem e reverência, refletindo os santos princípios da bendita obra. O irmão responsável pela condução deve ter discernimento e sensibilidade espiritual para guiar a irmandade, corrigindo com mansidão e exortando com amor.</p>
+                            <div class="bible-verse">"A palavra de Cristo habite em vós abundantemente, em toda a sabedoria, ensinando-vos e admoestando-vos uns aos outros, com salmos, hinos e cânticos espirituais" (Colossenses 3:16)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <h4>Feedback Construtivo e Paciência</h4>
+                            <p>Durante o ensaio, a prática do feedback construtivo é vital para o aprimoramento da irmandade. As observações devem ser feitas com amor e paciência, sempre visando o crescimento coletivo e a excelência no louvor conforme a multiforme graça de Deus.</p>
+                            <div class="bible-verse">"Com toda a humildade e mansidão, com longanimidade, suportando-vos uns aos outros em amor" (Efésios 4:2)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <h4>Perseverança e Dedicação</h4>
+                            <p>A perseverança e a dedicação são qualidades essenciais para a irmandade que se propõe a servir no louvor. O ensaio musical é um processo contínuo de aprendizado e aprimoramento, e nem sempre os resultados desejados são alcançados de imediato conforme a operação da força do seu poder.</p>
+                            <div class="bible-verse">"E não nos cansemos de fazer o bem, porque a seu tempo ceifaremos, se não desfalecermos" (Gálatas 6:9)</div>
+                        </div>
+
+                        <p style="text-align: center; margin-top: 2rem; font-style: italic; color: #666;">
+                            Vossos irmãos em Cristo<br>
+                            Congregação Cristã no Brasil
+                        </p>
+                    `
+                },
+                'guiaVisitantes': {
+                    title: 'Como Receber Visitantes',
+                    body: `
+                        <div class="progress-info">
+                            <strong>Caros irmãos, A paz de Deus seja convosco.</strong><br>
+                            Progresso: 0 de 8 passos concluídos
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>Preparação Espiritual e Pessoal</h4>
+                            <p>Antes de receber qualquer visitante, é fundamental que o irmão ou irmã se prepare espiritualmente. Isso envolve buscar a Deus em oração, pedindo discernimento e sabedoria para lidar com as diversas situações que podem surgir conforme a multiforme graça de Deus.</p>
+                            <div class="bible-verse">"Acima de tudo, porém, tende amor intenso uns para com os outros, porque o amor cobre multidão de pecados" (1 Pedro 4:8)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>Organização do Ambiente</h4>
+                            <p>O ambiente onde os visitantes serão recebidos deve refletir a ordem e a reverência que caracterizam a comum congregação. Certifique-se de que o local esteja limpo, organizado e acolhedor conforme os santos princípios da bendita obra.</p>
+                            <div class="bible-verse">"Tudo, porém, seja feito com decência e ordem" (1 Coríntios 14:40)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>Acolhimento e Saudação</h4>
+                            <p>Ao receber os visitantes, a saudação deve ser calorosa e sincera, transmitindo a paz de Deus. Um sorriso amigável pode fazer uma grande diferença. O objetivo é fazê-los sentir-se bem-vindos e à vontade desde o primeiro momento conforme a tradição apostólica.</p>
+                            <div class="bible-verse">"Amai-vos cordialmente uns aos outros com amor fraternal, preferindo-vos em honra uns aos outros" (Romanos 12:10)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h4>Orientação e Informações Essenciais</h4>
+                            <p>Após o acolhimento inicial, ofereça orientações básicas sobre o funcionamento da comum congregação. Isso pode incluir informações sobre os horários das reuniões e onde podem deixar seus pertences conforme a sã doutrina da Palavra de Deus.</p>
+                            <div class="bible-verse">"Não vos esqueçais da hospitalidade, porque por ela alguns, sem o saberem, hospedaram anjos" (Hebreus 13:2)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <h4>Durante a Reunião</h4>
+                            <p>Durante a reunião, seja discreto e atencioso com os visitantes. Evite interrupções desnecessárias e esteja atento a qualquer sinal de desconforto ou necessidade. O foco principal deve ser a exortação e os louvores conforme a operação da força do seu poder.</p>
+                            <div class="bible-verse">"Alegrai-vos com os que se alegram e chorai com os que choram" (Romanos 12:15)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <h4>Após a Reunião</h4>
+                            <p>Ao final da reunião, aproxime-se novamente dos visitantes para agradecer a presença e perguntar como se sentiram. A despedida deve ser tão acolhedora quanto a saudação inicial conforme os santos princípios da bendita obra.</p>
+                            <div class="bible-verse">"Portanto, enquanto temos oportunidade, façamos o bem a todos, mas principalmente aos da família da fé" (Gálatas 6:10)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">7</div>
+                            <h4>Seguimento e Oração</h4>
+                            <p>Se possível e com a permissão do visitante, obtenha um contato para um seguimento posterior. Ofereça-se para orar por eles e por suas necessidades, mostrando que a comum congregação se importa verdadeiramente com o bem-estar de cada um.</p>
+                            <div class="bible-verse">"Perseverai na oração, velando nela com ações de graças" (Colossenses 4:2)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">8</div>
+                            <h4>Discernimento e Respeito</h4>
+                            <p>Ao receber visitantes, é essencial exercer discernimento e respeito pelas suas individualidades. Evite discussões teológicas profundas ou confrontos desnecessários, especialmente em um primeiro contato conforme a sã doutrina da Palavra de Deus.</p>
+                            <div class="bible-verse">"Seja a vossa palavra sempre agradável, temperada com sal, para que saibais como vos convém responder a cada um" (Colossenses 4:6)</div>
+                        </div>
+
+                        <p style="text-align: center; margin-top: 2rem; font-style: italic; color: #666;">
+                            Vossos irmãos em Cristo<br>
+                            Congregação Cristã no Brasil
+                        </p>
+                    `
+                },
+                'guiaObraPiedade': {
+                    title: 'Como Conduzir Obra da Piedade',
+                    body: `
+                        <div class="progress-info">
+                            <strong>Caros irmãos, A paz de Deus seja convosco.</strong><br>
+                            Progresso: 0 de 7 passos concluídos
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>Compreendendo a Essência da Obra da Piedade</h4>
+                            <p>A Obra da Piedade, conforme os santos princípios da bendita obra e a sã doutrina da Palavra de Deus, é um ministério divinamente instituído para socorrer os necessitados, visitar os enfermos, e amparar viúvas, órfãos e idosos que carecem de auxílio conforme a multiforme graça de Deus.</p>
+                            <div class="bible-verse">"Não saiba a tua mão esquerda o que faz a direita" (Mateus 6:3)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>A Importância do Diácono e da Irmã da Obra da Piedade</h4>
+                            <p>Os Diáconos, instituídos pelos Apóstolos para cuidar deste importante negócio, são os principais responsáveis pela condução da Obra da Piedade. Eles devem buscar a Deus para obter os dons de sabedoria, revelação e discernimento conforme a operação da força do seu poder.</p>
+                            <div class="bible-verse">"E os que servirem bem como diáconos, adquirirão para si uma boa posição e muita confiança na fé que há em Cristo Jesus" (1 Timóteo 3:13)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>Identificação e Atendimento aos Necessitados</h4>
+                            <p>A identificação dos necessitados na congregação e entre a irmandade deve ser feita com sensibilidade e sob a guia de Deus. Não se trata de uma investigação humana, mas de um discernimento espiritual conforme a tradição apostólica.</p>
+                            <div class="bible-verse">"Lembrai-vos dos pobres" (Gálatas 2:10)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h4>Visitação aos Enfermos</h4>
+                            <p>A visitação aos enfermos é uma das principais atividades da Obra da Piedade. Deve ser feita com amor, paciência e discernimento, levando consolação e esperança através da sã doutrina da Palavra de Deus e dos santos princípios da bendita obra.</p>
+                            <div class="bible-verse">"Estava enfermo, e visitastes-me" (Mateus 25:36)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <h4>Auxílio Material e Espiritual</h4>
+                            <p>O auxílio prestado pela Obra da Piedade deve abranger tanto as necessidades materiais quanto espirituais. É importante equilibrar o socorro físico com a edificação espiritual, sempre buscando a multiforme graça de Deus para suprir todas as necessidades.</p>
+                            <div class="bible-verse">"Se um irmão ou uma irmã estiverem carecidos de roupa e necessitados do alimento cotidiano" (Tiago 2:15)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <h4>Organização e Administração dos Recursos</h4>
+                            <p>A administração dos recursos destinados à Obra da Piedade deve ser feita com transparência, honestidade e sabedoria. É fundamental manter registros adequados e prestar contas à irmandade conforme a operação da força do seu poder.</p>
+                            <div class="bible-verse">"Procurando fazer as coisas honestamente, não só diante do Senhor, mas também diante dos homens" (2 Coríntios 8:21)</div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">7</div>
+                            <h4>Oração e Consagração Contínua</h4>
+                            <p>Todo o trabalho da Obra da Piedade deve ser sustentado pela oração constante e pela consagração dos servos envolvidos. É através da comunhão com Deus que recebemos direção, sabedoria e força para cumprir este ministério conforme a tradição apostólica.</p>
+                            <div class="bible-verse">"Orai sem cessar" (1 Tessalonicenses 5:17)</div>
+                        </div>
+
+                        <p style="text-align: center; margin-top: 2rem; font-style: italic; color: #666;">
+                            Vossos irmãos em Cristo<br>
+                            Congregação Cristã no Brasil
+                        </p>
+                    `
+                },
+                'manualAnciao': {
+                    title: 'Manual do Ancião',
+                    body: `
+                        <div class="progress-info">
+                            <strong>Caros irmãos, A paz de Deus seja convosco.</strong><br>
+                            Manual para o ministério de Ancião conforme a sã doutrina da Palavra de Deus.
+                        </div>
+                        
+                        <div class="step">
+                            <h4>Qualificações Bíblicas</h4>
+                            <p>O ancião deve ser homem idôneo, revestido de dons e virtudes conforme os atributos de quem nasceu de novo, iluminado pelo Santo Espírito e pela multiforme graça de Deus.</p>
+                            <div class="bible-verse">"Convém, pois, que o bispo seja irrepreensível, marido de uma mulher, vigilante, sóbrio, honesto, hospitaleiro, apto para ensinar" (1 Timóteo 3:2)</div>
+                        </div>
+
+                        <div class="step">
+                            <h4>Responsabilidades Ministeriais</h4>
+                            <p>Compete ao ancião a administração dos sacramentos do batismo e Santa Ceia, unção dos enfermos e exortação da palavra conforme a autoridade ministerial outorgada pelo presbitério.</p>
+                            <div class="bible-verse">"Lembrai-vos dos vossos pastores, que vos falaram a palavra de Deus" (Hebreus 13:7)</div>
+                        </div>
+
+                        <div class="step">
+                            <h4>Procedimentos de Batismo</h4>
+                            <p>Realizar o sacramento do batismo conforme a doutrina apostólica, utilizando a frase oficial correta estabelecida pela bendita obra: "Irmão, em nome de Jesus eu te batizo, em nome do Pai, do Filho e do Espírito Santo"</p>
+                            <div class="bible-verse">"Arrependei-vos, e cada um de vós seja batizado em nome de Jesus Cristo para remissão dos vossos pecados" (Atos 2:38)</div>
+                        </div>
+
+                        <div class="step">
+                            <h4>Celebração da Santa Ceia</h4>
+                            <p>Presidir a celebração da Santa Ceia conforme a tradição apostólica, observando a ordem hierárquica e procedimentos específicos estabelecidos pelos santos princípios da bendita obra.</p>
+                            <div class="bible-verse">"Fazei isto em memória de mim" (1 Coríntios 11:24)</div>
+                        </div>
+
+                        <div class="step">
+                            <h4>Unção dos Enfermos</h4>
+                            <p>Ministrar a unção dos enfermos conforme a doutrina bíblica, orando pelos necessitados e aplicando o óleo sagrado conforme os santos princípios da sã doutrina.</p>
+                            <div class="bible-verse">"Está alguém entre vós doente? Chame os presbíteros da igreja, e orem sobre ele, ungindo-o com azeite em nome do Senhor" (Tiago 5:14)</div>
+                        </div>
+
+                        <div class="step">
+                            <h4>Exortação da Palavra</h4>
+                            <p>Ministrar a Palavra de Deus com fidelidade e reverência, edificando a fé da congregação conforme a sã doutrina e operação da força do seu poder.</p>
+                            <div class="bible-verse">"Prega a palavra, insta, quer seja oportuno, quer não, corrige, repreende, exorta com toda longanimidade e doutrina" (2 Timóteo 4:2)</div>
+                        </div>
+
+                        <div class="step">
+                            <h4>Cuidado Pastoral</h4>
+                            <p>Exercer o cuidado pastoral sobre a comum congregação, visitando os enfermos, consolando os aflitos e orientando os irmãos conforme os santos princípios da bendita obra.</p>
+                            <div class="bible-verse">"Apascentai o rebanho de Deus que está entre vós, tendo cuidado dele, não por força, mas voluntariamente" (1 Pedro 5:2)</div>
+                        </div>
+
+                        <div class="step">
+                            <h4>Ordem nos Cultos</h4>
+                            <p>Manter a ordem e reverência durante os cultos, seguindo a sequência tradicional estabelecida pela bendita obra e orientação do Espírito Santo.</p>
+                            <div class="bible-verse">"Mas faça-se tudo decentemente e com ordem" (1 Coríntios 14:40)</div>
+                        </div>
+
+                        <p style="text-align: center; margin-top: 2rem; font-style: italic; color: #666;">
+                            Vossos irmãos em Cristo<br>
+                            Congregação Cristã no Brasil
+                        </p>
+                    `
+                }
+            };
+
+            // Adicionar conteúdo padrão para outros modais não implementados
+            if (!contents[contentId]) {
+                return {
+                    title: 'Conteúdo em Desenvolvimento',
+                    body: `
+                        <div class="progress-info">
+                            <strong>Caros irmãos, A paz de Deus seja convosco.</strong><br>
+                            Este conteúdo está sendo desenvolvido conforme a sã doutrina da Palavra de Deus e santos princípios da bendita obra.
+                        </div>
+                        
+                        <div class="step">
+                            <h4>Em Breve</h4>
+                            <p>Este manual será disponibilizado em breve com todo o conteúdo baseado nos documentos oficiais da Congregação Cristã no Brasil e fundamentação bíblica sólida.</p>
+                            <div class="bible-verse">"A palavra de Deus não volta vazia, mas faz o que me apraz e prospera naquilo para que a designei" (Isaías 55:11)</div>
+                        </div>
+
+                        <p style="text-align: center; margin-top: 2rem; font-style: italic; color: #666;">
+                            Vossos irmãos em Cristo<br>
+                            Congregação Cristã no Brasil
+                        </p>
+                    `
+                };
+            }
+
+            return contents[contentId];
+        }
+    </script>
+</body>
+</html>
+
